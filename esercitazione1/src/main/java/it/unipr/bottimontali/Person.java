@@ -4,7 +4,7 @@ package it.unipr.bottimontali;
  * Hello world!
  *
  */
-public abstract class Person 
+public class Person 
 {   
     private String name;
     private String surname;
@@ -50,14 +50,14 @@ public abstract class Person
         this.password = password;
     }
 
-    public void subscribeToActivity(Activity desiredActivity)
+    public void subscribeToActivity(Club club, Activity desiredActivity)
     {
-        desiredActivity.addPerson(this);
+        club.subscribeToActivity(this, desiredActivity);
     }
 
-    public void unsubscribeFromActivity(Activity unsubscribingActivity)
+    public void unsubscribeFromActivity(Club club, Activity unsubscribingActivity)
     {
-        unsubscribingActivity.popPerson(this);
+        club.unSubscribeFromActivity(this, unsubscribingActivity);
     }
 
     @Override

@@ -10,7 +10,7 @@ public abstract class Activity
     private String name;
     private Person [] registered;
 
-    private Activity() {
+    protected Activity() {
     }
 
     public String getName() {
@@ -44,6 +44,7 @@ public abstract class Activity
             if (this.registered[i].equals(toDelete))
                 foundPerson = true;
         }
+        this.registered[this.registered.length-1] = null;
     }
 
     @Override
@@ -61,7 +62,7 @@ public abstract class Activity
     public String toString() {
         return "{" +
             " name='" + getName() + "'" +
-            ", registered='" + getRegistered().toString() + "'" +
+            ", registered no.='" + getRegistered().length + "'" +
             "}";
     }
     
