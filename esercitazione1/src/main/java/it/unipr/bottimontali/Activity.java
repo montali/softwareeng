@@ -1,14 +1,15 @@
 package it.unipr.bottimontali;
+
 import java.util.Arrays;
 
+//prova
 /**
  * Hello world!
  *
  */
-public abstract class Activity 
-{
+public abstract class Activity {
     private String name;
-    private Person [] registered;
+    private Person[] registered;
 
     protected Activity() {
     }
@@ -29,22 +30,20 @@ public abstract class Activity
         this.registered = registered;
     }
 
-    public void addPerson (Person person)
-    {
-        this.registered = Arrays.copyOf(this.registered, this.registered.length+1);
-        this.registered [this.registered.length-1] = person;
+    public void addPerson(Person person) {
+        this.registered = Arrays.copyOf(this.registered, this.registered.length + 1);
+        this.registered[this.registered.length - 1] = person;
     }
 
-    public void popPerson (Person toDelete)
-    {
+    public void popPerson(Person toDelete) {
         boolean foundPerson = false;
-        for (int i=0; i<this.registered.length;i++){
+        for (int i = 0; i < this.registered.length; i++) {
             if (foundPerson)
-                this.registered[i-1] = this.registered[i];
+                this.registered[i - 1] = this.registered[i];
             if (this.registered[i].equals(toDelete))
                 foundPerson = true;
         }
-        this.registered[this.registered.length-1] = null;
+        this.registered[this.registered.length - 1] = null;
     }
 
     @Override
@@ -60,10 +59,7 @@ public abstract class Activity
 
     @Override
     public String toString() {
-        return "{" +
-            " name='" + getName() + "'" +
-            ", registered no.='" + getRegistered().length + "'" +
-            "}";
+        return "{" + " name='" + getName() + "'" + ", registered no.='" + getRegistered().length + "'" + "}";
     }
-    
+
 }
