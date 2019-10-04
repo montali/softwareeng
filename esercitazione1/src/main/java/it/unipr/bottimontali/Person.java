@@ -1,8 +1,15 @@
 package it.unipr.bottimontali;
 
 /**
- * Hello world!
- *
+ * Person is in charge of saving a person object with its properties.
+ * Every person has a name, a surname, an email and a password.
+ * 
+ * TODO: Encrypt the password
+ * 
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @version     1.0
+ * @since       1.0
  */
 public class Person 
 {   
@@ -10,7 +17,16 @@ public class Person
     private String surname;
     private String email;
     private String password;
-
+    /** 
+     * This constructor generates a Person object.
+     *
+     * @param String name     the person name
+     * @param String surname  the person surname
+     * @param String email    the person email 
+     * @param String password the person password
+     * @return void
+     * @since           1.0
+     */
     public Person(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
