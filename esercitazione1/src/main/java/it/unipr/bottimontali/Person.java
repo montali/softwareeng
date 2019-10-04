@@ -124,7 +124,7 @@ public class Person
     /**
      * Behavior that verifies the equality of two person.
      * @param Object o
-     * @return boolean 
+     * @return boolean true if the object are equal, false if they're not.
      */
     @Override
     public boolean equals(Object o) {
