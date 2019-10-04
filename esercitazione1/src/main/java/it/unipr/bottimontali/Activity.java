@@ -2,11 +2,15 @@ package it.unipr.bottimontali;
 
 import java.util.Arrays;
 
-//prova
 /**
- * Hello world!
- *
+ * Activity is in charge of saving a activity object with its properties.
+ * Every activity has a name and an array of person registered for the activity.
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @version     1.0
+ * @since       1.0
  */
+
 public abstract class Activity {
     private String name;
     private Person[] registered;

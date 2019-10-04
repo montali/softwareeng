@@ -1,9 +1,5 @@
 package it.unipr.bottimontali;
 
-/**
- * Hello world!
- *
- */
 public class Helpers 
 {
     // Using generic types here would be great but in Java we cannot create generic arrays

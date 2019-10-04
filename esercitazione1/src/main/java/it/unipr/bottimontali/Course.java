@@ -1,8 +1,12 @@
 package it.unipr.bottimontali;
 
 /**
- * Hello world!
- *
+ * Course is an Activity subclass which is in charge of saving a course with its properties.
+ * Every course has two type of constructor.
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @version     1.0
+ * @since       1.0
  */
 public class Course extends Activity 
 {

@@ -2,8 +2,10 @@ package it.unipr.bottimontali;
 
 /**
  * Person is in charge of saving a person object with its properties.
- * Every person has a name, a surname, an email and a password.
- * 
+ * Each person has a name, a surname, an email and a password.
+ * Each person has two constructors, and get and set methods for every private variable.
+ * Each person has one behavior for the registration to the courses. This behavior accept two arguments: the first is a Club object and the second is an Activity object. 
+ *  
  * TODO: Encrypt the password
  * 
  * @author      Simone Montali <simone.montali1@studenti.unipr.it>
