@@ -1,8 +1,12 @@
 package it.unipr.bottimontali;
 
 /**
- * Hello world!
- *
+ * Admin is a subclass of person. It has some privileges more than Person.
+ * 
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @version     1.0
+ * @since       1.0
  */
 public class Admin extends Person
 {
