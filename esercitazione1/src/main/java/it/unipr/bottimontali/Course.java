@@ -1,5 +1,5 @@
 package it.unipr.bottimontali;
-
+//DA COMPLETARE
 /**
  * Course is an Activity subclass which is in charge of saving a course with its properties.
  * Every course has two type of constructor.
@@ -10,10 +10,19 @@ package it.unipr.bottimontali;
  */
 public class Course extends Activity 
 {
+	/**
+	 * 
+	 * @param String name
+	 * @param Person[] registered
+	 */
     public Course(String name, Person[] registered) {
         this.setName(name);
         this.setRegistered(registered);
     }
+    /**
+     * 
+     * @param String name
+     */
     public Course(String name) {
         this.setName(name);
         this.setRegistered(new Person[0]);
