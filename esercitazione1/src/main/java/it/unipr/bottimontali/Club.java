@@ -6,6 +6,7 @@ package it.unipr.bottimontali;
  * 
  * @author      Simone Montali <simone.montali1@studenti.unipr.it>
  * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * 
  * @version     1.0
  * @since       1.0
  */
@@ -16,6 +17,8 @@ public class Club
     private Activity [] activities;
     /**
      * This constructor generate a Club object without the initialization of the parameters. 
+     * 
+     * @since 1.0
      */
     public Club()
     {
@@ -25,7 +28,10 @@ public class Club
     }
     /**
      * This constructor create a Club object and set the club's name to the String name.
+     * 
      * @param final String name
+     * 
+     * @since 1.0
      */
     public Club(final String name)
     {
@@ -34,11 +40,14 @@ public class Club
         this.people = new Person[0];
     }
     /**
-     * This constructor create a Club object and set the club's name, people and activities.
+     * This constructor creates a Club object and set the club's name, people and activities.
      * Activity and people are setting with System.arraycopy function.
+     * 
      * @param final String name
      * @param final Activity[] activities
      * @param final Person[] people
+     * 
+     * @since 1.0
      */
     public Club(final String name, final Activity []activities, final Person []people)
     {
@@ -49,24 +58,35 @@ public class Club
         System.arraycopy(people, 0, this.people, 0, people.length);
     }
     /**
-     * This behavior returns the Club's name.
-     * @return String this.namebscribesbscribes
+     * This method returns the Club's name.
+     * 
+     * @return String the club's name
+     * 
+     * @since 1.0
      */
     public String getName()
     {
         return this.name;
     }
     /**
-     * This behavior set the Club's name.
-     * @param String name for the Club
+     * This method sets the Club's name.
+     * 
+     * @param String name the club's new name
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void setName(String name)
     {
         this.name = name;
     }
     /**
-     * This behavior returns an array of Persons that are subscribe to the Club.
-     * @return Person[] returnedValue
+     * This method returns an array of Person that are subscribed to the Club.
+     * 
+     * @return Person[] the subscribed people
+     * 
+     * @since 1.0
      */
     public Person[] getPeople()
     {
@@ -75,8 +95,13 @@ public class Club
         return returnedValue;
     }
     /**
-     * This behavior set the array of Person that are subscribe to the Club.
-     * @param Person[] inputPeople
+     * This method sets the array of Person that are subscribed to the Club.
+     * 
+     * @param Person[] inputPeople the new people array
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void setPeople(Person []inputPeople)
     {
@@ -85,8 +110,11 @@ public class Club
         this.people = newArray;
     }
     /**
-     * This behavior returns an array of Activities that are present in the Club.
-     * @return Activity[] returnedValue
+     * This method returns an array of Activities that are present in the Club.
+     * 
+     * @return Activity[] the activities
+     * 
+     * @since 1.0
      */
     public Activity[] getActivities()
     {
@@ -95,8 +123,13 @@ public class Club
         return returnedValue;
     }
     /**
-     * This behavior set the array of Activities that are present in the Club.
-     * @param Activity[] inputActivities
+     * This method sets the array of Activities that are present in the Club.
+     * 
+     * @param Activity[] inputActivities the new activities
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void setActivities(Activity []inputActivities)
     {
@@ -105,9 +138,16 @@ public class Club
         this.activities = newActivities;
     }
     /**
-     * This behavior add a member to the Club. It works only if the authorizer is a Club's Admin and if true it append the Person toSubrscibe to the Club's array of subscribers.
-     * @param Admin  authorizer
-     * @param Person toSubscribe
+     * This method adds a member to the Club. It only works if the authorizer 
+     * is a Club's Admin and the person isn't already subscribed. If true it appends 
+     * the Person toSubscribe to the Club's array of subscribers.
+     * 
+     * @param Admin  authorizer  the admin
+     * @param Person toSubscribe the new person
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void addMember(Admin authorizer, Person toSubscribe)
     {
@@ -115,12 +155,23 @@ public class Club
         if (!Helpers.elementExists(this.people, authorizer)) {
             return;
         }
+        // Checks if the member is already subscribed
+        if (Helpers.elementExists(this.people, toSubscribe)) {
+        	return;
+        }
         this.setPeople(Helpers.appendPerson(this.getPeople(), toSubscribe));
     }
     /**
-     * This behavior remove a member from the Club. It works only if the authorizer is a Club's Admin and if true it remove the Person toDelete from the Club's array of subscribers.
-     * @param Admin  authorizer
-     * @param Person toDelete
+     * This method removes a member from the Club. It only works if the authorizer
+     * is a Club's Admin and the person is a club member. If true it removes the Person 
+     * toDelete from the Club's array of subscribers.
+     * 
+     * @param Admin  authorizer the authorizing admin
+     * @param Person toDelete   the person to delete
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void removeMember(Admin authorizer, Person toDelete)
     {
@@ -128,12 +179,22 @@ public class Club
         if (!Helpers.elementExists(this.people, authorizer)) {
             return;
         }
+        if (!Helpers.elementExists(this.people, toDelete)) {
+        	return;
+        }
         this.setPeople(Helpers.popPerson(this.getPeople(), toDelete));
     }
     /**
-     * This behavior add an activity to the Club. It works only if the authorizer is a Club's Admin and if true it append the Activity toAdd to the Club's array of Activities.
-     * @param Admin    authorizer
-     * @param Activity toAdd
+     * This method adds an activity to the Club. It only works if the authorizer 
+     * is a Club's Admin and the activity doesn't already exist. If true it appends
+     * the Activity toAdd to the Club's array of Activities.
+     * 
+     * @param Admin    authorizer the authorizing admin
+     * @param Activity toAdd	  the activity to add
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void addActivity(Admin authorizer, Activity toAdd)
     {
@@ -141,12 +202,23 @@ public class Club
         if (!Helpers.elementExists(this.people, authorizer)) {
             return;
         }
+        // Check if the activity already exists
+        if (Helpers.elementExists(this.activities, toAdd)) {
+        	return;
+        }
         this.setActivities(Helpers.appendActivity(this.getActivities(), toAdd));
     }
     /**
-     * This behavior remove an Activity from the Club. It works only if the authorizer is a Club's Admin and if true it remove the Activity toDelete from the Club's array of Activity.
-     * @param Admin    authorizer
-     * @param Activity toDelete
+     * This method removes an Activity from the Club. It only works if the authorizer 
+     * is a Club's Admin and the activity is present. If true it remove the Activity
+     * toDelete from the Club's array of Activity.
+     * 
+     * @param Admin    authorizer the authorizing admin
+     * @param Activity toDelete	  the activity we want to delete
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void removeActivity(Admin authorizer, Activity toDelete)
     {
@@ -154,13 +226,23 @@ public class Club
         if (!Helpers.elementExists(this.people, authorizer)) {
             return;
         }
+        if (!Helpers.elementExists(this.activities, toDelete)) {
+        	return;
+        }
         this.setActivities(Helpers.popActivity(this.getActivities(), toDelete));
     }
     /**
-     * This behavior replace a Club's Activity with a new Activity. It works only if the authorizer is a Club's Admin and if true it remove the Activity oldActivity from the Club and add the Activity newActivity to the Club.
-     * @param Admin    authorizer
-     * @param Activity oldActivity
-     * @param Activity newActivity
+     * This method replaces a Club's Activity with a new Activity. It only works if the 
+     * authorizer is a Club's Admin and if true it remove the Activity oldActivity from 
+     * the Club and add the Activity newActivity to the Club.
+     * 
+     * @param Admin    authorizer  the authorizing admin
+     * @param Activity oldActivity the old activity
+     * @param Activity newActivity the activity to replace with
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void editActivity(Admin authorizer, Activity oldActivity, Activity newActivity)
     {
@@ -171,15 +253,26 @@ public class Club
         if (!Helpers.elementExists(this.activities, oldActivity)){
             return;
         }
+        // If the new activity is already saved, we're just gonna delete the old one
+        if (Helpers.elementExists(this.activities, newActivity)) {
+        	this.removeActivity(authorizer, oldActivity);
+        	return;
+        }
         this.removeActivity(authorizer, oldActivity);
         this.addActivity(authorizer, newActivity);
     }
     /**
-     * This behavior replace a Club's subscriber with a new Person. It works only if the authorizer is a Club's Admin and if the Person oldPerson is in the CLub's array of Person.
+     * This method replaces a Club's subscriber with a new Person. It only works 
+     * if the authorizer is a Club's Admin and if the Person oldPerson is in the Club's array of Person.
      * If true it remove the Person oldPerson from the Club and add the Person newPerson to the Club
-     * @param Admin  authorizer
-     * @param Person oldPerson
-     * @param Person newPerson
+     * 
+     * @param Admin  authorizer the authorizing admin
+     * @param Person oldPerson  the person to replace
+     * @param Person newPerson  the person to replace with
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void editPerson(Admin authorizer, Person oldPerson, Person newPerson)
     {
@@ -190,35 +283,58 @@ public class Club
         if (!Helpers.elementExists(this.people, oldPerson)){
             return;
         }
+        // If the new person is already saved, we're just gonna delete the old one
+        if (Helpers.elementExists(this.people, newPerson)) {
+        	this.removeMember(authorizer, oldPerson);
+        	return;
+        }
         this.removeMember(authorizer, oldPerson);
         this.addMember(authorizer, newPerson);
     }
     /**
-     * This behavior subscribes a Person to an Activity. It works only if the Person toSubsribe is not already subscribe to the Activity toSubscribeTo.
-     * If true it search the Activity to the Club's array and then is a wrapper to the Activity setRegistered behavior with the Helpers appendPerson.
-     * @param Person   toSubscribe
-     * @param Activity toSubscribeTo
+     * This method subscribes a Person to an Activity. It only works if 
+     * the Person toSubscribe is not already subscribed to the Activity toSubscribeTo.
+     * It then checks if the activity exists.
+     * 
+     * @param Person   toSubscribe   the person to subscribe
+     * @param Activity toSubscribeTo the activity we want to subscribe the person to
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void subscribeToActivity (Person toSubscribe, Activity toSubscribeTo)
     {
         // Check if already subscribed
         if (Helpers.elementExists(toSubscribeTo.getRegistered(), toSubscribe))
             return;
-        //CONTROLLO CHE ATTIVITA' ESISTA?
+        if (!Helpers.elementExists(this.activities, toSubscribeTo)) {
+        	return;
+        }
         for (int i = 0; i<this.activities.length; i++){
             if  (this.activities[i].getName() == toSubscribeTo.getName()){
                 this.activities[i].setRegistered(Helpers.appendPerson(this.activities[i].getRegistered(), toSubscribe));
             }
         }
     }
+    
     /**
-     This behavior unsubscribes a Person from an Activity. It works only if the Person toUnsubscribe is not already unsubscribed from the Activity toUnsubscribeFrom.
-     * If true it search the Activity to the Club's array and then is a wrapper to the Activity setRegistered behavior with the helpers popPerson.
+     * This method unsubscribes a Person from an Activity. It only works if the Person toUnsubscribe 
+     * is not already unsubscribed from the Activity toUnsubscribeFrom.
+     * It checks if the activity exists.
+     *       
      * @param Person   toUnsubscribe
      * @param Activity toUnsubscribeFrom
+     * 
+     * @return void
+     * 
+     * @since 1.0
      */
     public void unSubscribeFromActivity (Person toUnsubscribe, Activity toUnsubscribeFrom)
     {
+    	if (!Helpers.elementExists(this.activities, toUnsubscribeFrom)) {
+    		return;
+    	}
         // Check if already subscribed
         if (!Helpers.elementExists(toUnsubscribeFrom.getRegistered(), toUnsubscribe))
             return;
@@ -229,7 +345,12 @@ public class Club
         }
     }
     /**
-     * This behavior is a complete description for a Club object. It show the Club's name and all of the Club's subscribers and activities.
+     * This method's return value is a complete description for a Club object. 
+     * It shows the Club's name and all of the Club's subscribers and activities.
+     * 
+     * @return String the description
+     * 
+     * @since 1.0
      */
     @Override
     public String toString() {

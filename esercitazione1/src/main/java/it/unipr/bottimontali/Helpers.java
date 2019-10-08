@@ -5,6 +5,7 @@ package it.unipr.bottimontali;
  * 
  * @author      Simone Montali <simone.montali1@studenti.unipr.it>
  * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * 
  * @version     1.0
  * @since       1.0
  */
@@ -19,6 +20,7 @@ public class Helpers
      * @param Person   elementToAppend the element we want to append
      *
      * @return Person[] the extended array
+     * 
      * @since 1.0
      */
     public static Person[] appendPerson (Person[] array, Person elementToAppend)
@@ -37,6 +39,7 @@ public class Helpers
      * @param Activity   elementToAppend the element we want to append
      *
      * @return Activity[] the extended array
+     * 
      * @since 1.0
      */
     public static Activity[] appendActivity (Activity[] array, Activity elementToAppend)
@@ -55,6 +58,7 @@ public class Helpers
      * @param Person   elementToDelete the element we want to delete
      *
      * @return Person[] the shortened array
+     * 
      * @since 1.0
      */
     public static Person[] popPerson(Person[]array, Person elementToDelete)
@@ -78,6 +82,7 @@ public class Helpers
      * @param Activity   elementToDelete the element we want to delete
      *
      * @return Activity[] the shortened array
+     * 
      * @since 1.0
      */
     public static Activity[] popActivity (Activity[] array, Activity elementToDelete)
@@ -99,6 +104,7 @@ public class Helpers
      * @param T   elementToFind the element we want to find
      *
      * @return boolean whether the element was found or not
+     * 
      * @since 1.0
      */
     public static <T> boolean elementExists (T[] array, T elementToFind)
