@@ -1,12 +1,15 @@
 package it.unipr.BottiMontali;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Collections;
 
 public class Winehouse {
 	
 	private String name;
-	private ArrayList<Wine> wines;
+	private HashMap<Wine,InventoryItem> wines;
 	private ArrayList<Seller> sellers;
 	private ArrayList<User> members;
 	private ArrayList<Wine> soldWines;
@@ -14,18 +17,19 @@ public class Winehouse {
 	
 	public Winehouse() {
 		this.name = "";
-		this.wines = new ArrayList<Wine>();
+		this.wines = new HashMap<Wine,InventoryItem>();
 		this.sellers = new ArrayList<Seller>();
 		this.members = new ArrayList<User>();
 		this.soldWines= new ArrayList<Wine>(); //vanno messi nel costruttore?
 		this.request= new ArrayList<Wine>();
 	}
 	
-	public Winehouse(final String name, final ArrayList<Wine> wines, final ArrayList<Seller> sellers, final ArrayList<User> members) {
+	public Winehouse(final String name, final HashMap<Wine,InventoryItem> wines, final ArrayList<Seller> sellers, final ArrayList<User> members) {
 		this.name = name;
-		Collections.copy(this.wines,wines);
+		this.wines = new HashMap<Wine,InventoryItem>(wines);
 		Collections.copy(this.sellers, sellers);
 		Collections.copy(this.members,members);
+		//costruttori vuoti
 	}
 	
 	public String getName() {
@@ -36,12 +40,12 @@ public class Winehouse {
 		this.name = name;
 	}
 	
-	public ArrayList<Wine> getWines(){
+	public HashMap<Wine,InventoryItem> getWines(){
 		return this.wines;
 	}
 	
-	public void setWines(ArrayList<Wine> wines) {
-		Collections.copy(this.wines, wines);
+	public void setWines(HashMap<Wine,InventoryItem> wines) {
+		this.wines = new HashMap<Wine,InventoryItem>(wines);
 	}
 	
 	public ArrayList<Seller> getSellers(){
@@ -64,78 +68,57 @@ public class Winehouse {
 		return this.soldWines;
 	}
 	
-	//VERIFICO SE UN VINO E' IN LISTA
-	public int isThere(Wine toSearch) {
-		int index = 0;
-		for(Wine temp : this.wines) {
-			if(temp == toSearch) {
-				return index;
-			}
-			index++;
-		}
-		return (-1);
-	}
-	
 	//CERCO VINI PER NOME
-	public ArrayList<Wine> foundWinesName(String toSearch){
-		ArrayList<Wine> searched = new ArrayList<Wine>();
-		for(Wine temp : this.wines) {
-			if(temp.getName() == toSearch) {
-				searched.add(temp);
+	public Map.Entry<Wine,InventoryItem> foundWinesName(String toSearch){
+		for(Map.Entry<Wine,InventoryItem> temp : this.wines.entrySet()) {
+			if(temp.getKey().getName() == toSearch) {
+				return temp;
 			}
 		}
-		return searched;
+		return null;
 	}
 	
 	//CERCO VINI PER ANNO
-	public ArrayList<Wine> foundWinesYear(int toSearch){
-		ArrayList<Wine> searched = new ArrayList<Wine>();
-		for(Wine temp : this.wines) {
-			if(temp.getYear() == toSearch) {
-				searched.add(temp);
+	public HashMap<Wine,InventoryItem> foundWinesYear(Integer toSearch){
+		HashMap<Wine,InventoryItem> searched = new HashMap<Wine,InventoryItem>();
+		for(Map.Entry<Wine,InventoryItem> temp : this.wines.entrySet()) {
+			if(temp.getValue().getQuantity(toSearch)>0) {
+				searched.put(temp.getKey(),temp.getValue());
 			}
 		}
-		return searched;
+		return null;
 	}
 	
 	//AGGIUNGO VINI (DAL SELLER)
-	public void addWine(Seller authorizer, Wine toAdd) {
+	public void addWine(Seller authorizer, Wine toAdd, Integer year) {
 		//guardo se authorizer è un seller
 		if(!this.sellers.contains(authorizer)) {
 			return;
 		}
-		int index = this.isThere(toAdd);
-		if(index == -1) {
-			this.wines.add(toAdd);
-			//notificarlo alle richieste
+		if(this.wines.containsKey(toAdd)) {
+			this.wines.get(toAdd).sumQuantity(year, 1);
 		}
 		else {
-			toAdd.setQuantity(this.wines.get(index).getQuantity()+ toAdd.getQuantity());
-			this.wines.set(index, toAdd);
+			this.wines.put(toAdd,new InventoryItem(year,Integer.valueOf(1)));
 		}
+		System.out.println("Vino aggiunto con successo: " + toAdd.getName() + " del " + year);
 	}
 	
 	//RIMUOVO VINI (DAL SELLER)
-	public void removeWine(Seller authorizer, Wine toRemove) {
+	public void removeWine(Seller authorizer, Wine toRemove, Integer year) {
 		//verifico authorizer
-		if(!this.sellers.contains(authorizer)) {
-			return;
+		if(this.wines.containsKey(toRemove) && this.sellers.contains(authorizer)) {
+			if(this.wines.get(toRemove).sumQuantity(year, -1)) {
+				System.out.println("Vino rimosso con successo: " + toRemove.getName()+ " del " + year);
+			}
+			else {
+				System.out.println("Errore rimozione vino: controlla i parametri");
+			}
 		}
-		if(!this.wines.contains(toRemove)) {
-			return;
-		}
-		//guardo quanti vini sono rimasti, se uno tolgo il vino
-		int index = this.isThere(toRemove);
-		if(this.wines.get(index).getQuantity()>1) {
-			int quantity = this.wines.get(index).getQuantity()-1;
-			this.wines.get(index).setQuantity(quantity);
-		}
-		else {
-			this.wines.remove(index);
-		}
+		return;
 	}
 	//aggiungo vino alle richieste se non disponibile
-	public void isRequested(Wine toRequest) {
+	public void findRequested(Wine toRequest) {
 		if(this.wines.contains(toRequest)) {
 			return;
 		}
