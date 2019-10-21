@@ -8,6 +8,9 @@ public class Seller extends Person{
 	public Seller(String username, String password) {
 		super(username, password);
 	}
+	public Seller (Person person){
+		super(person.getUsername(), person.getPassword);
+	}
 	
 
 	public void shipOrders (Winehouse shop) {

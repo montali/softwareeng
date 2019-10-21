@@ -58,6 +58,13 @@ public class Winehouse {
 		return this.members;
 	}
 	
+	public void setRequestedWines(ArrayList<Request> requestedWines) {
+		Collections.copy(this.requestedWines, requestedWines);
+	}
+
+	public ArrayList<Request> getRequestedWines(){
+		return this.requestedWines;
+	}
 	public void setMembers(ArrayList<User> members) {
 		Collections.copy(this.members, members);
 	}
@@ -66,11 +73,20 @@ public class Winehouse {
 		return this.orders;
 	}
 	
-	public User login (String username, String password){
+	public Person login (String username, String password){
+		// First, we check if the person is a normal user (more frequent)
 		for (User user: this.members) {
 			if (user.getUsername() == username) {
 				if (user.checkLogin(password)){
 					return user;
+				}
+			}
+		}
+		// If not, let's check if it's a seller
+		for (Seller seller: this.sellers) {
+			if (seller.getUsername() == username) {
+				if (seller.checkLogin(password)){
+					return seller;
 				}
 			}
 		}
@@ -187,10 +203,10 @@ public class Winehouse {
 			if (!tempOrder.isShipped()){
 				if (removeWine(authorizer, tempOrder.getOrderedWine(), tempOrder.getYear(), tempOrder.getQuantity())) {
 					tempOrder.setShipped(true);
-					System.out.println("Vino spedito con successo: " + tempOrder.getOrderedWine().getName());
+					System.out.println("Succesfully shipped wine: " + tempOrder.getOrderedWine().getName());
 				} 
 				else {
-					System.out.println("C'e' stato un errore con l'ordine: "+ tempOrder.getOrderedWine().getName()+"; Riempi il magazzino.");
+					System.out.println("Error with order: "+ tempOrder.getOrderedWine().getName()+"; Refill the warehouse first.");
 				}
 			}
 		}

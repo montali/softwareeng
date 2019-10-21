@@ -10,6 +10,9 @@ public class User extends Person{
 	public User (String username, String password) {
 		super(username, password);
 	}
+	public User(Person user){
+		super(user.getUsername(), user.getPassword());
+	}
 
 	public void notifyWineAdded () {
 		System.out.println("Un vino richiesto da "+ this.getUsername() + " e' stato aggiunto.");
