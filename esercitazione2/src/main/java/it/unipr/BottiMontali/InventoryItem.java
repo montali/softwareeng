@@ -17,7 +17,7 @@ public class InventoryItem {
 		this.year = new HashMap<Integer,Integer>(year);
 	}
 	
-	public Integer getQuantity(final Integer year) {
+	public Integer getQuantityForYear(final Integer year) {
 		return this.year.get(year);
 	}
 	

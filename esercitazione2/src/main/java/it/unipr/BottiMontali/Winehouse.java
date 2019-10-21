@@ -107,7 +107,7 @@ public class Winehouse {
 		}
 		HashMap<Wine,InventoryItem> searched = new HashMap<Wine,InventoryItem>();
 		for(Map.Entry<Wine,InventoryItem> temp : this.wines.entrySet()) {
-			if(temp.getValue().getQuantity(toSearch)>0) {
+			if(temp.getValue().getQuantityForYear(toSearch)>0) {
 				searched.put(temp.getKey(),temp.getValue());
 			}
 		}
