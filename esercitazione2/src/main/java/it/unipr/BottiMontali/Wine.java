@@ -50,11 +50,11 @@ public class Wine {
             return false;
         }
         Wine wine = (Wine) o;
-        return (name == wine.name) && (notes == wine.notes) && (vine == wine.vine);
+        return (name.equals(wine.name)) && (notes.equals(wine.notes)) && (vine.equals(wine.vine));
     }
     
     @Override
     public String toString() {
-        return "{" + " name='" + getName() + "'" + " notes='" + getNotes() + "'" + " vine='" + getVine() + "'" + "}";
+        return "----WINE----" + " name='" + getName() + "'\n" + "notes='" + getNotes() + "'\n" + " vine='" + getVine() + "'\n" + "\n";
     }
 }

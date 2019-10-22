@@ -25,8 +25,10 @@ public class Winehouse {
 	public Winehouse(final String name, final HashMap<Wine,InventoryItem> wines, final ArrayList<Seller> sellers, final ArrayList<User> members) {
 		this.name = name;
 		this.wines = new HashMap<Wine,InventoryItem>(wines);
-		Collections.copy(this.sellers, sellers);
-		Collections.copy(this.members,members);
+		this.sellers = new ArrayList<Seller>(sellers);
+		this.members = new ArrayList<User> (members);
+		this.orders= new ArrayList<Order>(); //vanno messi nel costruttore?
+		this.requestedWines= new ArrayList<Request>();
 		//costruttori vuoti
 	}
 	
@@ -76,7 +78,7 @@ public class Winehouse {
 	public Person login (String username, String password){
 		// First, we check if the person is a normal user (more frequent)
 		for (User user: this.members) {
-			if (user.getUsername() == username) {
+			if (username.equals(user.getUsername())) {
 				if (user.checkLogin(password)){
 					return user;
 				}
@@ -84,7 +86,7 @@ public class Winehouse {
 		}
 		// If not, let's check if it's a seller
 		for (Seller seller: this.sellers) {
-			if (seller.getUsername() == username) {
+			if (username.equals(seller.getUsername())) {
 				if (seller.checkLogin(password)){
 					return seller;
 				}
@@ -95,7 +97,7 @@ public class Winehouse {
 
 	public void signUp (String username, String password) {
 		for (User user: this.members) {
-			if (user.getUsername() == username) {
+			if (username.equals(user.getUsername())) {
 				System.out.println("Utente gia' esistente");
 				return;
 			}
@@ -104,16 +106,17 @@ public class Winehouse {
 	}
 
 	//CERCO VINI PER NOME
-	public Map.Entry<Wine,InventoryItem> findWinesName(User authorizer, String toSearch){
-		if(!this.members.contains(authorizer)) {
+	public HashMap<Wine,InventoryItem> findWinesName(Person authorizer, String toSearch){
+		if (!(this.members.contains(authorizer)||this.sellers.contains(authorizer))) {
 			return null;
 		}
+		HashMap<Wine,InventoryItem> searched = new HashMap<Wine,InventoryItem>();
 		for(Map.Entry<Wine,InventoryItem> temp : this.wines.entrySet()) {
-			if(temp.getKey().getName() == toSearch) {
-				return temp;
+			if(toSearch.equals(temp.getKey().getName())) {
+				searched.put(temp.getKey(), temp.getValue());
 			}
 		}
-		return null;
+		return searched;
 	}
 	
 	//CERCO VINI PER ANNO
@@ -187,7 +190,7 @@ public class Winehouse {
 	//aggiungo vino alle richieste se non disponibile
 	public void requestWine(User requester, String toRequest) {
 		for(Map.Entry<Wine,InventoryItem> temp : this.wines.entrySet()) {
-			if(temp.getKey().getName() == toRequest) {
+			if(toRequest.equals(temp.getKey().getName())) {
 				return;
 			}
 		}
@@ -211,6 +214,8 @@ public class Winehouse {
 			}
 		}
 	}
+	
+	
 
 	public ArrayList<Order> getOrdersForUser (User requester) {
 		if(!this.members.contains(requester)) {
@@ -218,7 +223,7 @@ public class Winehouse {
 		}
 		ArrayList<Order> orders = new ArrayList<Order>();
 		for (Order tempOrder: this.orders) {
-			if (tempOrder.getOrderer() == requester){
+			if (requester.equals(tempOrder.getOrderer())){
 				orders.add(tempOrder);
 			}
 		}

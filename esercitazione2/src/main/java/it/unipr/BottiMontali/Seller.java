@@ -9,7 +9,7 @@ public class Seller extends Person{
 		super(username, password);
 	}
 	public Seller (Person person){
-		super(person.getUsername(), person.getPassword);
+		super(person.getUsername(), person.getPassword());
 	}
 	
 

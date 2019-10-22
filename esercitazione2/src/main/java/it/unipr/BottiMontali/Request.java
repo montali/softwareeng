@@ -31,7 +31,7 @@ public class Request {
     }
 
     public boolean checkIfRequested (String addedWine) {
-        if (this.wineName == addedWine) {
+        if (addedWine.equals(this.wineName)) {
             this.requester.notifyWineAdded();
             return true;
         }

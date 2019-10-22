@@ -24,7 +24,7 @@ public class User extends Person{
 	public ArrayList<Order> getMyOrders (final Winehouse shop) {
 		return shop.getOrdersForUser(this);
 	}
-	public Map.Entry<Wine,InventoryItem> getWineByName (String name, Winehouse shop) {
+	public HashMap<Wine,InventoryItem> getWineByName (String name, Winehouse shop) {
 		return shop.findWinesName(this, name);
 	}
 	public HashMap<Wine,InventoryItem> getWinesByYear (Integer year, Winehouse shop) {

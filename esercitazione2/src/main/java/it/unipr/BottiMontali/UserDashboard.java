@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserDashboard extends Dashboard{
-    private User loggedIn;
-    private Winehouse shop;
 
     public UserDashboard (User loggingIn, Winehouse shop){
         super(loggingIn, shop);
@@ -48,21 +46,24 @@ public class UserDashboard extends Dashboard{
             System.out.println("IOEXception thrown. Exiting now.");
             return;
         }
-        Map.Entry<Wine,InventoryItem> foundWine = this.shop.findWinesName(this.loggedIn, name);
+        HashMap<Wine,InventoryItem> foundWine = this.shop.findWinesName(this.loggedIn, input);
         if (foundWine == null) {
             System.out.println("Wine not found. Sorry.");
         } else {
-            System.out.println("Found! "+foundWine.getKey().getName()+"\n"+foundWine.getKey().getNotes());
-            System.out.println("Wanna buy it? Y/N:");
-            try {
-                input = reader.readLine();
-            } catch (IOException exc) {
-                System.out.println("IOEXception thrown. Exiting now.");
-                return;
-            }
-            if (input == "Y")
-                    this.orderWine(foundWine.getKey());
-            }
+        	for(Map.Entry<Wine, InventoryItem> wineEntry: foundWine.entrySet()) {
+                System.out.println(wineEntry.getKey().toString());
+                System.out.println(wineEntry.getValue().toString());
+                System.out.println("Wanna buy it? Y/N:");
+                try {
+                    input = reader.readLine();
+                } catch (IOException exc) {
+                    System.out.println("IOEXception thrown. Exiting now.");
+                    return;
+                }
+                if (input.equals("Y"))
+                    this.orderWine(wineEntry.getKey());
+            	}
+        	}
         }
 
     private void orderWine(Wine wine){
@@ -85,7 +86,7 @@ public class UserDashboard extends Dashboard{
             return;
         }
         Integer quantity = Integer.valueOf(input);
-        this.loggedIn.orderWine(wine, this.shop, year, quantity);
+        new User(this.loggedIn).orderWine(wine, this.shop, year, quantity);
     }
 
     private void searchWineByYear (){
@@ -99,13 +100,14 @@ public class UserDashboard extends Dashboard{
             return;
         }
         ArrayList<Wine> foundWinesArray = new ArrayList();
-        HashMap<Wine,InventoryItem> foundWines = this.shop.findWinesYear(this.loggedIn, Integer.valueOf(input));
+        HashMap<Wine,InventoryItem> foundWines = this.shop.findWinesYear(new User(this.loggedIn), Integer.valueOf(input));
         if (foundWines == null) {
             System.out.println("Wine not found. Sorry.");
         } else {
             System.out.println("Found! ");
             for (Map.Entry<Wine,InventoryItem> foundWine : foundWines.entrySet()){
-                System.out.println(foundWine.getKey().getName()+"\n"+foundWine.getKey().getNotes()+"\n\n");
+                System.out.println(foundWine.getKey().toString());
+                System.out.println(foundWine.getValue().toString());
                 foundWinesArray.add(foundWine.getKey());
             }
             System.out.println("Wanna buy one? [#/N]: ");
@@ -115,7 +117,7 @@ public class UserDashboard extends Dashboard{
                 System.out.println("IOEXception thrown. Exiting now.");
                 return;
             }
-            if (input == "N")
+            if (input.equals("N"))
                 return;
             }
             Integer orderingWine = 0;

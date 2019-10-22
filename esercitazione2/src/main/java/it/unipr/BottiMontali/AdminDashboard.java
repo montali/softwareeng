@@ -3,11 +3,10 @@ package it.unipr.BottiMontali;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 public class AdminDashboard extends Dashboard{    
-    private Seller loggedIn;
-    private Winehouse shop;
 
     public AdminDashboard (Seller loggingIn, Winehouse shop){
         super(loggingIn, shop);
@@ -41,8 +40,9 @@ public class AdminDashboard extends Dashboard{
 
     private void shipWine(){
         System.out.println("Doing my work!");
-        this.loggedIn.shipOrders(this.shop);
+        new Seller(this.loggedIn).shipOrders(this.shop);
         System.out.println("Finished shipping orders. Go home and have a beer.");
+        this.mainMenu();
     }
 
     private void addWine() {
@@ -55,9 +55,9 @@ public class AdminDashboard extends Dashboard{
             System.out.println("IOEXception thrown. Exiting now.");
             return;
         }
-        if (input == "Y"){
+        if (input.equals("Y")){
             this.refillWarehouse();
-        } else if (input == "N") {
+        } else if (input.equals("N")) {
             this.addNewWine();
         }else {
             System.out.println("Wrong input.");
@@ -75,12 +75,24 @@ public class AdminDashboard extends Dashboard{
             System.out.println("IOEXception thrown. Exiting now.");
             return;
         }
-        Map.Entry<Wine,InventoryItem> foundWine = this.shop.findWinesName(this.loggedIn, name);
+        HashMap<Wine,InventoryItem> foundWine = this.shop.findWinesName(this.loggedIn, input);
         if (foundWine == null) {
             System.out.println("Wine not found. Sorry.");
         } else {
-            System.out.println("Found! "+foundWine.getKey().getName()+"\n"+foundWine.getKey().getNotes());
-            System.out.println("What year are we refilling? ");
+        	for(Map.Entry<Wine, InventoryItem> wineEntry: foundWine.entrySet()) {
+                System.out.println(wineEntry.getKey().toString());
+                System.out.println("Wanna refill it? Y/N:");
+                try {
+                    input = reader.readLine();
+                } catch (IOException exc) {
+                    System.out.println("IOEXception thrown. Exiting now.");
+                    return;
+                }
+                if (input.equals("N"))
+                    continue;
+            	
+        	
+        	System.out.println("What year are we refilling? ");
             try {
                 input = reader.readLine();
             } catch (IOException exc) {
@@ -108,8 +120,11 @@ public class AdminDashboard extends Dashboard{
                 System.out.println("Wrong value inserted.");
                 return;
             }
-            this.shop.addWine(this.loggedIn, foundWine.getKey(), year, quantity);
+            this.shop.addWine(new Seller(this.loggedIn), wineEntry.getKey(), year, quantity);
         }
+        
+    }
+        this.mainMenu();
     }
 
     private void addNewWine () {
@@ -170,13 +185,14 @@ public class AdminDashboard extends Dashboard{
             System.out.println("Wrong value inserted.");
             return;
         }
-
-        this.shop.addWine(this.loggedIn, new Wine(name, notes, vine), year, quantity);
+        this.shop.addWine(new Seller(this.loggedIn), new Wine(name, notes, vine), year, quantity);
+        this.mainMenu();
     }
 
     private void printRequests () {
         for (Request request: this.shop.getRequestedWines()){
             System.out.println("Request:\n" + request.getWineName()+"\nBy: "+request.getRequester().getUsername()+"\n");
         }
+        this.mainMenu();
     }
 }
