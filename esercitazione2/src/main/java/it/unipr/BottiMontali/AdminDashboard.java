@@ -13,7 +13,7 @@ public class AdminDashboard extends Dashboard{
     }
     
     public void mainMenu(){
-        System.out.println("Welcome back to work.\n1) Ship orders\n2) Add wine\n3) Check requests\n");
+        System.out.println("Welcome back to work.\n1) Ship orders\n2) Add wine\n3) Check requests\n4) Print all data\n");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int action = 0;
         try {
@@ -32,6 +32,9 @@ public class AdminDashboard extends Dashboard{
             case 3:
                 this.printRequests();
                 break;
+            case 4:
+            	this.printWinehouse();
+            	break;
             default:
                 this.mainMenu();
                 break;
@@ -194,5 +197,9 @@ public class AdminDashboard extends Dashboard{
             System.out.println("Request:\n" + request.getWineName()+"\nBy: "+request.getRequester().getUsername()+"\n");
         }
         this.mainMenu();
+    }
+    
+    private void printWinehouse() {
+    	System.out.println(this.shop.getWinehouseData(this.loggedIn));
     }
 }

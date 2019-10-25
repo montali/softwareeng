@@ -14,7 +14,7 @@ public class UserDashboard extends Dashboard{
     }
 
     public void mainMenu(){
-        System.out.println("Welcome to Zamma\n1) Search wine by name\n2) Search wine by year\n");
+        System.out.println("Welcome to Zamma\n1) Search wine by name\n2) Search wine by year\n3) Print all wines");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int action = 0;
         try {
@@ -30,6 +30,9 @@ public class UserDashboard extends Dashboard{
             case 2:
                 this.searchWineByYear();
                 break;
+            case 3:
+            	this.printAllWines();
+            	break;
             default:
                 this.mainMenu();
                 break;
@@ -129,5 +132,8 @@ public class UserDashboard extends Dashboard{
             }
             this.orderWine(foundWinesArray.get(orderingWine));
         }
+    public void printAllWines() {
+    	System.out.println(this.shop.stringAllWines());
+    }
     }
     

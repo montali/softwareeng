@@ -70,6 +70,10 @@ public class Person {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "[username=" + username + ", password=" + password + "]";
+	}
 	
 	
 }

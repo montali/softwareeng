@@ -24,6 +24,9 @@ public class InventoryItem {
 	}
 	
 	public boolean sumQuantity(Integer year, Integer toSum) {
+		if (! this.year.containsKey(year)) {
+			this.year.put(year, 0);
+		}
 		if((this.year.get(year)+toSum)<0) {
 			return false;
 		}
@@ -34,7 +37,7 @@ public class InventoryItem {
 	public String toString() {
 		String returnable = "Quantities:\n";
 		for (Map.Entry<Integer, Integer> inventory: this.year.entrySet()) {
-			returnable += (inventory.getKey()+": "+inventory.getValue());
+			returnable += (inventory.getKey()+": "+inventory.getValue())+"\n";
 		}
 		return returnable;
 	}

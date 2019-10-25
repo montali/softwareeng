@@ -18,7 +18,7 @@ public class App
        Wine vinelleschi = new Wine("Soncino", "Buonissimo con la verdura", "ReggioVini");
        HashMap<Wine, InventoryItem> wines = new HashMap<Wine, InventoryItem>();
        wines.put(vinello, new InventoryItem(1990,5));
-       wines.put(vinello, new InventoryItem(1991,2));
+       wines.get(vinello).sumQuantity(1998, 2);
        wines.put(vinelloski, new InventoryItem(2000,3));
        ArrayList<Seller> sellers = new ArrayList<Seller> ();
        sellers.add(simmi);

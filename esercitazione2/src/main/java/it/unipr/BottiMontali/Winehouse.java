@@ -229,4 +229,39 @@ public class Winehouse {
 		}
 		return orders;
 	}
+	
+	public String getWinehouseData(Person loggedIn) {
+		//verifico authorizer
+		if(!this.sellers.contains(loggedIn)) {
+			return "";
+		}
+		String returnedString;
+		returnedString = "Winehouse: "+this.getName()+"\n";
+		returnedString += "\nUSERS:\n";
+		for (User printingUser: this.getMembers()) {
+			returnedString += printingUser.toString();
+		}
+		returnedString += "\nSELLERS::\n";
+		for (Seller printingAdmin: this.getSellers()) {
+			returnedString += printingAdmin.toString();
+		}
+		returnedString += "\nWINES:\n";
+		for (Map.Entry<Wine, InventoryItem> wineItem: this.getWines().entrySet()) {
+			returnedString += wineItem.getKey().toString() + "\n" + wineItem.getValue().toString();
+		}
+		returnedString += "\nORDERS:\n";
+		for (Order printingOrder: this.getOrders()) {
+			returnedString += printingOrder.toString();
+		}
+		return returnedString;	
+	}
+	
+	public String stringAllWines () {
+		String returnedString = "";
+		returnedString += "WINES:\n";
+		for (Map.Entry<Wine, InventoryItem> wineItem: this.getWines().entrySet()) {
+			returnedString += wineItem.getKey().toString() + "\n" + wineItem.getValue().toString();
+		}
+		return returnedString;
+	}
 }
