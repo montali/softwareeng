@@ -4,6 +4,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Winehouse describes a winehouse and its properties.
+ * 
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * 
+ * @version     1.0
+ * @since       1.0
+ */
 public class Winehouse {
 	
 	private String name;
@@ -13,68 +22,141 @@ public class Winehouse {
 	private ArrayList<Order> orders;
 	private ArrayList<Request> requestedWines;
 	
+	/**
+	 * This constructor generates an empty winehouse
+	 */
 	public Winehouse() {
 		this.name = "";
 		this.wines = new HashMap<Wine,InventoryItem>();
 		this.sellers = new ArrayList<Seller>();
 		this.members = new ArrayList<User>();
-		this.orders= new ArrayList<Order>(); //vanno messi nel costruttore?
+		this.orders= new ArrayList<Order>(); 
 		this.requestedWines= new ArrayList<Request>();
 	}
 	
+	/**
+	 * This constructor generates a winehouse from its properties
+	 * 
+	 * @param name
+	 * @param wines
+	 * @param sellers
+	 * @param members
+	 */
 	public Winehouse(final String name, final HashMap<Wine,InventoryItem> wines, final ArrayList<Seller> sellers, final ArrayList<User> members) {
 		this.name = name;
 		this.wines = new HashMap<Wine,InventoryItem>(wines);
 		this.sellers = new ArrayList<Seller>(sellers);
 		this.members = new ArrayList<User> (members);
-		this.orders= new ArrayList<Order>(); //vanno messi nel costruttore?
+		this.orders= new ArrayList<Order>(); 
 		this.requestedWines= new ArrayList<Request>();
 		//costruttori vuoti
 	}
 	
+	/**
+	 * This method gets the winehouse's name
+	 * 
+	 * @return
+	 */
 	public String getName() {
 		return this.name;
 	}
 	
+	/**
+	 * This method sets the winehouse's name
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * This method gets the winehouse's wines
+	 * 
+	 * @return the wines
+	 */
 	public HashMap<Wine,InventoryItem> getWines(){
 		return this.wines;
 	}
 	
+	/**
+	 * This method sets the winehouse's wines
+	 * 
+	 * @param wines
+	 */
 	public void setWines(HashMap<Wine,InventoryItem> wines) {
 		this.wines = new HashMap<Wine,InventoryItem>(wines);
 	}
 	
+	/**
+	 * This method gets the winehouse's sellers
+	 * 
+	 * @return the sellers
+	 */
 	public ArrayList<Seller> getSellers(){
 		return this.sellers;
 	}
 	
+	/**
+	 * This method sets the winehouse's sellers
+	 * 
+	 * @param Sellers
+	 */
 	public void setSellers(ArrayList<Seller> Sellers) {
 		Collections.copy(this.sellers, sellers);
 	}
 
+	/**
+	 * This method gets the winehouse's members
+	 * 
+	 * @return the members
+	 */
 	public ArrayList<User> getMembers(){
 		return this.members;
 	}
 	
+	/**
+	 * This method sets the winehouse's requested wines
+	 * 
+	 * @param requestedWines
+	 */
 	public void setRequestedWines(ArrayList<Request> requestedWines) {
 		Collections.copy(this.requestedWines, requestedWines);
 	}
 
+	/**
+	 * This method gets the winehouse's requested wines
+	 * 
+	 * @return the requests
+	 */
 	public ArrayList<Request> getRequestedWines(){
 		return this.requestedWines;
 	}
+	/**
+	 * This method sets the winehouse's members
+	 * 
+	 * @param members
+	 */
 	public void setMembers(ArrayList<User> members) {
 		Collections.copy(this.members, members);
 	}
 	
+	/**
+	 * This method gets the winehouse's orders
+	 * 
+	 * @return the orders
+	 */
 	public ArrayList<Order> getOrders() {
 		return this.orders;
 	}
 	
+	/**
+	 * This method logs a person in the winehouse
+	 * 
+	 * @param username
+	 * @param password
+	 * @return the person object
+	 */
 	public Person login (String username, String password){
 		// First, we check if the person is a normal user (more frequent)
 		for (User user: this.members) {
@@ -95,6 +177,12 @@ public class Winehouse {
 		return null;
 	}
 
+	/**
+	 * This method registers a new user to the winehouse
+	 * 
+	 * @param username
+	 * @param password
+	 */
 	public void signUp (String username, String password) {
 		for (User user: this.members) {
 			if (username.equals(user.getUsername())) {
@@ -105,7 +193,13 @@ public class Winehouse {
 		this.members.add(new User(username, password));
 	}
 
-	//CERCO VINI PER NOME
+	/**
+	 * This method looks for wines in the DB by their name
+	 * 
+	 * @param authorizer
+	 * @param toSearch
+	 * @return the results
+	 */
 	public HashMap<Wine,InventoryItem> findWinesName(Person authorizer, String toSearch){
 		if (!(this.members.contains(authorizer)||this.sellers.contains(authorizer))) {
 			return null;
@@ -119,7 +213,13 @@ public class Winehouse {
 		return searched;
 	}
 	
-	//CERCO VINI PER ANNO
+	/**
+	 * This method looks for wines in the DB by their year
+	 * 
+	 * @param authorizer
+	 * @param toSearch
+	 * @return the results
+	 */
 	public HashMap<Wine,InventoryItem> findWinesYear(User authorizer, Integer toSearch){
 		if(!this.members.contains(authorizer)) {
 			return null;
@@ -133,7 +233,13 @@ public class Winehouse {
 		return null;
 	}
 	
-	//AGGIUNGO VINI (DAL SELLER)
+	/**
+	 * This method adds a new single wine to the database
+	 * 
+	 * @param authorizer
+	 * @param toAdd
+	 * @param year
+	 */
 	public void addWine(Seller authorizer, Wine toAdd, Integer year) {
 		//guardo se authorizer è un seller
 		if(!this.sellers.contains(authorizer)) {
@@ -152,7 +258,14 @@ public class Winehouse {
 		}
 		System.out.println("Vino aggiunto con successo: " + toAdd.getName() + " del " + year);
 	}
-		//AGGIUNGO VINI (DAL SELLER)
+	/**
+	 * This method adds multiple wines to the DB
+	 * 
+	 * @param authorizer
+	 * @param toAdd
+	 * @param year
+	 * @param quantity
+	 */
 	public void addWine(Seller authorizer, Wine toAdd, Integer year, Integer quantity) {
 		//guardo se authorizer è un seller
 		if(!this.sellers.contains(authorizer)) {
@@ -171,7 +284,14 @@ public class Winehouse {
 		}
 		System.out.println("Vino aggiunto con successo: " + toAdd.getName() + " del " + year);
 	}
-	//RIMUOVO VINI (DAL SELLER)
+	/**
+	 * This method removes a single wine
+	 * 
+	 * @param authorizer
+	 * @param toRemove
+	 * @param year
+	 * @return
+	 */
 	public boolean removeWine(Seller authorizer, Wine toRemove, Integer year) {
 		//verifico authorizer
 		if(this.wines.containsKey(toRemove) && this.sellers.contains(authorizer)) {
@@ -179,7 +299,15 @@ public class Winehouse {
 		}
 		return false;
 	}
-	//RIMUOVO VINI (DAL SELLER)
+	/**
+	 * This method removes multiple wines
+	 * 
+	 * @param authorizer
+	 * @param toRemove
+	 * @param year
+	 * @param quantity
+	 * @return
+	 */
 	public boolean removeWine(Seller authorizer, Wine toRemove, Integer year, Integer quantity) {
 		//verifico authorizer
 		if(this.wines.containsKey(toRemove) && this.sellers.contains(authorizer)) {
@@ -187,7 +315,12 @@ public class Winehouse {
 		}
 		return false;
 	}
-	//aggiungo vino alle richieste se non disponibile
+	/**
+	 * This method adds a wine to the requests
+	 * 
+	 * @param requester
+	 * @param toRequest
+	 */
 	public void requestWine(User requester, String toRequest) {
 		for(Map.Entry<Wine,InventoryItem> temp : this.wines.entrySet()) {
 			if(toRequest.equals(temp.getKey().getName())) {
@@ -197,10 +330,23 @@ public class Winehouse {
 		this.requestedWines.add(new Request(requester, toRequest));
 	}
 
+	/**
+	 * This method orders a new wine
+	 * 
+	 * @param orderer
+	 * @param wantedWine
+	 * @param year
+	 * @param quantity
+	 */
 	public void orderWine (User orderer, Wine wantedWine, Integer year, Integer quantity){
 		this.orders.add(new Order(orderer, wantedWine, year, quantity, false));
 	}
 
+	/**
+	 * This method ships the ordered wines
+	 * 
+	 * @param authorizer
+	 */
 	public void shipWines (Seller authorizer) {
 		for (Order tempOrder: this.orders){
 			if (!tempOrder.isShipped()){
@@ -217,6 +363,12 @@ public class Winehouse {
 	
 	
 
+	/**
+	 * This method returns the orders a user has made
+	 * 
+	 * @param requester
+	 * @return the orders
+	 */
 	public ArrayList<Order> getOrdersForUser (User requester) {
 		if(!this.members.contains(requester)) {
 			return null;
@@ -230,6 +382,12 @@ public class Winehouse {
 		return orders;
 	}
 	
+	/**
+	 * This method returns all the winehouse data in a string
+	 * 
+	 * @param loggedIn
+	 * @return the resulting string
+	 */
 	public String getWinehouseData(Person loggedIn) {
 		//verifico authorizer
 		if(!this.sellers.contains(loggedIn)) {
@@ -256,6 +414,11 @@ public class Winehouse {
 		return returnedString;	
 	}
 	
+	/**
+	 * This method returns a string with all the wines in inventory
+	 * 
+	 * @return the string
+	 */
 	public String stringAllWines () {
 		String returnedString = "";
 		returnedString += "WINES:\n";

@@ -6,12 +6,31 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class with methods to display an admin UI.
+ * 
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * 
+ * @version     1.0
+ * @since       1.0
+ */
 public class AdminDashboard extends Dashboard{    
 
+    /**
+     * Constructor for the dashboard. Logs a user in.
+     * 
+     * @param loggingIn the user
+     * @param shop 		the winehouse we're working on
+     */
     public AdminDashboard (Seller loggingIn, Winehouse shop){
         super(loggingIn, shop);
     }
     
+    /**
+     * Prints the main menu and calls the right functions
+     *
+     */
     public void mainMenu(){
         System.out.println("Welcome back to work.\n1) Ship orders\n2) Add wine\n3) Check requests\n4) Print all data\n");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -41,6 +60,10 @@ public class AdminDashboard extends Dashboard{
         }
     }
 
+    /**
+     * UI to ship the ordered wines.
+     * 
+     */
     private void shipWine(){
         System.out.println("Doing my work!");
         new Seller(this.loggedIn).shipOrders(this.shop);
@@ -48,6 +71,10 @@ public class AdminDashboard extends Dashboard{
         this.mainMenu();
     }
 
+    /**
+     * UI to add a new wine
+     * 
+     */
     private void addWine() {
         System.out.println("Is the item already in our database? [Y/N]");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -68,6 +95,10 @@ public class AdminDashboard extends Dashboard{
         }
     }
 
+    /**
+     * UI to add wine quantities.
+     * 
+     */
     private void refillWarehouse (){
         System.out.print("Insert name: ");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -130,6 +161,10 @@ public class AdminDashboard extends Dashboard{
         this.mainMenu();
     }
 
+    /**
+     * UI to add a non-existent wine.
+     * 
+     */
     private void addNewWine () {
         System.out.print("Insert name: ");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -160,7 +195,7 @@ public class AdminDashboard extends Dashboard{
         }
         String notes = input;
 
-        System.out.println("Insert year: ");
+        System.out.println("Insert quantity: ");
         try {
             input = reader.readLine();
         } catch (IOException exc) {
@@ -192,6 +227,10 @@ public class AdminDashboard extends Dashboard{
         this.mainMenu();
     }
 
+    /**
+     * UI that prints all the requests made by users.
+     * 
+     */
     private void printRequests () {
         for (Request request: this.shop.getRequestedWines()){
             System.out.println("Request:\n" + request.getWineName()+"\nBy: "+request.getRequester().getUsername()+"\n");
@@ -199,6 +238,9 @@ public class AdminDashboard extends Dashboard{
         this.mainMenu();
     }
     
+    /**
+     * UI that prints all the saved data.
+     */
     private void printWinehouse() {
     	System.out.println(this.shop.getWinehouseData(this.loggedIn));
     }

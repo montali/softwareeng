@@ -4,8 +4,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Login contains helper methods to login a user and generate its dashboard.
+ * 
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * 
+ * @version     1.0
+ * @since       1.0
+ */
 public class Login {
 
+/**
+ * This method returns a dashboard given a user and a winehouse.
+ * 
+ * @param username
+ * @param password
+ * @param shop
+ * 
+ * @return the dashboard.
+ */
 private static Dashboard logIntoWinehouse (String username, String password, Winehouse shop) {
     Person loggingIn = shop.login(username, password);
     if (loggingIn == null){
@@ -19,6 +37,11 @@ private static Dashboard logIntoWinehouse (String username, String password, Win
         return null;
 }
 
+/**
+ * This method generates the UI to log the user in.
+ * 
+ * @param shop
+ */
 public static void loginPage(Winehouse shop) {
 	System.out.println("Please insert username: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

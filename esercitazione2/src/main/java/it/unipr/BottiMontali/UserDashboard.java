@@ -7,12 +7,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class with methods to display a user UI.
+ * 
+ * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @author      Simone Montali <simone.montali1@studenti.unipr.it>
+ * 
+ * @version     1.0
+ * @since       1.0
+ */
 public class UserDashboard extends Dashboard{
 
+    /**
+     * This constructor generates a dashboard from the user and the shop
+     * 
+     * @param loggingIn
+     * @param shop
+     */
     public UserDashboard (User loggingIn, Winehouse shop){
         super(loggingIn, shop);
     }
 
+    /**
+     * This method prints the main menu
+     */
     public void mainMenu(){
         System.out.println("Welcome to Zamma\n1) Search wine by name\n2) Search wine by year\n3) Print all wines");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -39,6 +57,9 @@ public class UserDashboard extends Dashboard{
         }
     }
 
+    /**
+     * This method searches a wine by its name
+     */
     private void searchWineByName (){
         System.out.print("Insert name: ");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -69,6 +90,11 @@ public class UserDashboard extends Dashboard{
         	}
         }
 
+    /**
+     * This method orders a wine
+     * 
+     * @param wine
+     */
     private void orderWine(Wine wine){
         System.out.print("Year: ");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -92,6 +118,9 @@ public class UserDashboard extends Dashboard{
         new User(this.loggedIn).orderWine(wine, this.shop, year, quantity);
     }
 
+    /**
+     * This method searches a wine by its year
+     */
     private void searchWineByYear (){
         System.out.print("Insert year: ");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -132,6 +161,9 @@ public class UserDashboard extends Dashboard{
             }
             this.orderWine(foundWinesArray.get(orderingWine));
         }
+    /**
+     * This method prints all the wines
+     */
     public void printAllWines() {
     	System.out.println(this.shop.stringAllWines());
     }
