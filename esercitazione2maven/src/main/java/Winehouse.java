@@ -1,4 +1,3 @@
-package it.unipr.BottiMontali;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

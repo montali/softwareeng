@@ -1,7 +1,4 @@
-package it.unipr.BottiMontali;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+package com.bottimontali;
 
 /**
  * Person describes a generic user. It is the parent class of User and Seller.

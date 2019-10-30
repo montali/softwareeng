@@ -1,4 +1,4 @@
-package it.unipr.BottiMontali;
+package com.bottimontali;
 
 /**
  * Request is made from a user when he wants a specific wine.

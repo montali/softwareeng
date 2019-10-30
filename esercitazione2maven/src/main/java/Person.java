@@ -1,8 +1,3 @@
-package it.unipr.BottiMontali;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Person describes a generic user. It is the parent class of User and Seller.
  * In the future, plain saving of the password should be avoided.
