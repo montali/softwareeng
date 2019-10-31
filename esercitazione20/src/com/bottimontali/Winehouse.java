@@ -1,4 +1,4 @@
-package it.unipr.BottiMontali;
+package com.bottimontali;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

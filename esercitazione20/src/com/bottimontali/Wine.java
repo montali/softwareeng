@@ -1,4 +1,4 @@
-package it.unipr.BottiMontali;
+package com.bottimontali;
 
 /**
  * Wine describes a single type of wine.

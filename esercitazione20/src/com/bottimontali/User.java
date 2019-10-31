@@ -1,6 +1,5 @@
-package it.unipr.BottiMontali;
+package com.bottimontali;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 
 /**

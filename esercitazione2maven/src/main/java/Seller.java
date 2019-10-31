@@ -1,5 +1,3 @@
-package it.unipr.BottiMontali;
-
 /**
  * Seller is a superuser that works for the winehouse.
  * 

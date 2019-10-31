@@ -1,5 +1,3 @@
-package it.unipr.BottiMontali;
-
 /**
  * Order describes a wine order object.
  * 

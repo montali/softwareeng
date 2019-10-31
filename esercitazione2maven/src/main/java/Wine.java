@@ -1,5 +1,3 @@
-package it.unipr.BottiMontali;
-
 /**
  * Wine describes a single type of wine.
  * 
