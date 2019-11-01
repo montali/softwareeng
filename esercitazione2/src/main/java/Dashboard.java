@@ -1,5 +1,3 @@
-package it.unipr.BottiMontali;
-
 /**
  * This class describes a generic dashboard.
  * 
