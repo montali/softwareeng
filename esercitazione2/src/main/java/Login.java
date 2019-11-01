@@ -59,7 +59,14 @@ public static void loginPage(Winehouse shop) {
         return;
     }
     String password = input;
-    Dashboard db = Login.logIntoWinehouse(username, password, shop);
-    db.mainMenu();
+    if(shop.isRegistered(username, password)) {
+    	Dashboard db = Login.logIntoWinehouse(username, password, shop);
+    	db.mainMenu();
+    } else {
+    	System.out.println("Attenzione! Username o password non corrette, riprovare.\n");
+    	loginPage(shop);
+    }
+    
+    
 }
 }
