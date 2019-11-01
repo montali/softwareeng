@@ -414,6 +414,28 @@ public class Winehouse {
 	}
 	
 	/**
+	 * This method verify if the login is correct
+	 * 
+	 * @param username
+	 * @param password
+	 * @return true if username and password are correct
+	 */
+	public boolean isRegistered(String username, String password) {
+		for(Person temp : this.members) {
+			if(temp.getUsername().equals(username) && temp.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		for(Person temp : this.sellers) {
+			if(temp.getUsername().equals(username) && temp.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * This method returns a string with all the wines in inventory
 	 * 
 	 * @return the string
