@@ -9,21 +9,24 @@ public class App
 {
     public static void main( String[] args )
     {
-       Seller simmi = new Seller("simmontali", "password");
-       User bull = new User("bullbo", "champagnePapi98");
-       Wine vinello = new Wine("Lambrusco", "Buonissimo con le lasagne", "BottiVini");
-       Wine vinelloski = new Wine("Champagne", "Buonissimo con le ostriche", "MontaliVini");
-       Wine vinelleschi = new Wine("Soncino", "Buonissimo con la verdura", "ReggioVini");
-       HashMap<Wine, InventoryItem> wines = new HashMap<Wine, InventoryItem>();
-       wines.put(vinello, new InventoryItem(1990,5));
-       wines.get(vinello).sumQuantity(1998, 2);
-       wines.put(vinelloski, new InventoryItem(2000,3));
-       ArrayList<Seller> sellers = new ArrayList<Seller> ();
-       sellers.add(simmi);
-       ArrayList<User> users = new ArrayList<User>();
-       users.add(bull);
-       Winehouse popa = new Winehouse("Popina", wines,sellers, users );
-       //simmi.addWines(vinelleschi, 1900, popa);
-       Login.loginPage(popa);
+    
+        Seller Simone = new Seller ("Simone" , "1234");
+    	User Filippo = new User ("Filippo" , "456");
+    	Wine Lambrusco = new Wine("Lambrusco" , "Buono per i pasti" , "VignetoParma");
+    	Wine Spumante = new Wine("Spumante" , "Eccezionale per i brindisi" , "VignetoParigi");
+    	Wine Rosato = new Wine ("Rosato" , "Perfetto per l'aperitivo" , "VignetoReggio");
+    	HashMap<Wine,InventoryItem> Wines = new HashMap<Wine, InventoryItem>();
+    	Wines.put(Lambrusco, new InventoryItem(1998,4));
+    	Wines.put(Spumante, new InventoryItem(2005,1));
+    	Wines.get(Lambrusco).sumQuantity(2002, 4);
+    	Wines.put(Rosato,new InventoryItem(2010,2));
+    	ArrayList<Seller> Sellers = new ArrayList<Seller> ();
+    	Sellers.add(Simone);
+    	ArrayList<User> Users = new ArrayList<User>();
+    	Users.add(Filippo);
+    	Winehouse CantinaUnipr = new Winehouse("CantinaUnipr", Wines, Sellers, Users);
+     
+        Login.loginPage(CantinaUnipr);
+     
     }
 }

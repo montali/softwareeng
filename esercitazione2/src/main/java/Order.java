@@ -137,5 +137,12 @@ public class Order {
     public void setShipped(boolean shipped) {
         this.shipped = shipped;
     }
-
+    
+    /**
+     * This method generates a string describing the order
+     */
+    @Override
+    public String toString() {
+        return "Order: " + this.getOrderedWine() + " effettuato da " + this.getOrderer().getUsername() + " quantità:  " + this.getQuantity() +"\n";
+    }
 }
