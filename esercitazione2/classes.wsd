@@ -1,0 +1,113 @@
+@startuml classes
+ Login -- Dashboard : generates
+ Dashboard <|-- UserDashboard
+ Dashboard <|-- AdminDashboard
+
+ Person <|-- Seller 
+ Person <|-- User 
+ User "1" o-- "0..n" UserDashboard 
+ Seller "1" o-- "0..n" AdminDashboard
+
+Winehouse "1..n" o-- "1..n" Seller
+Winehouse "1..n" o-- "0..n" User
+Winehouse "1" o-- "0..n" Request
+Winehouse "1" o-- "0..n" Order
+Winehouse "0..n" o-- "0..n" InventoryItem
+
+InventoryItem "1" *-- "1" Wine
+
+Order "0..n" *-- "1..n" Wine
+Order "0..n" *-- "1" User
+
+Request "0..n" *-- "1" User
+
+class Login {
+    -logIntoWinehouse(String, String, Winehouse)
+    +loginPage()
+}
+
+class Dashboard {
+    #loggedIn : Person
+    #shop : Winehouse
+    +mainMenu()
+}
+
+class UserDashboard {
+    +mainMenu()
+    -searchWineByName()
+    -orderWine(Wine)
+    -searchWineByYear()
+    +printAllWines()
+}
+
+class AdminDashboard {
+    +mainMenu()
+    -shipWine()
+    -addWine()
+    -refillWarehouse()
+    -addNewWine()
+    -printRequests()
+    -printWinehouse()
+}
+
+class Person {
+    #username : String
+    #password : String
+    +checkLogin(String)
+}
+
+class Seller {
+    +shipOrders(Winehouse)
+    +addWines(Wine, Integer, Integer, Winehouse)
+}
+
+class User {
+    +notifyWineAdded()
+    +orderWine(Wine, Winehouse, Integer, Integer)
+    +getMyOrders(Winehouse)
+    +getWineByName (String, Winehouse)
+    +getWineByYear(Integer, Winehouse)
+}
+
+class Winehouse {
+    -name : String
+    +login(String, String)
+    +signUp(String, String)
+    +findWinesName(Person, String)
+    +findWinesYear(Person, String)
+    +addWine(Seller, Wine, Integer, Integer)
+    +removeWine(Seller, Wine, Integer, Integer)
+    +requestWine(User, String)
+    +orderWine(User, Wine, Integer, Integer)
+    +shipWines(Seller)
+    +getOrdersForUser(User)
+    +getWinehouseData(Person)
+    +stringAllWines
+}
+
+class Request {
+    -wineName : String 
+    +checkIfRequested(String)
+}
+
+class Order {
+    -quantity : Integer
+    -year : Integer
+}
+
+class InventoryItem {
+    -quantityForYear : HashMap<Integer, Integer>
+    +getQuantityForYear(Integer)
+    +sumQuantity(Integer, Integer)
+}
+
+class Wine {
+    -name : String
+    -notes : String 
+    -vine : String 
+}
+
+
+
+
+@enduml
