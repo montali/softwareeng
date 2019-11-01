@@ -10,9 +10,9 @@ public class App
     public static void main( String[] args )
     {
        Seller simmi = new Seller("simmontali", "password");
-       User bull = new User("bullbo", "passerinaLover98");
+       User bull = new User("bullbo", "champagnePapi98");
        Wine vinello = new Wine("Lambrusco", "Buonissimo con le lasagne", "BottiVini");
-       Wine vinelloski = new Wine("Passerina", "Buonissimo con la salsiccia", "MontaliVini");
+       Wine vinelloski = new Wine("Champagne", "Buonissimo con le ostriche", "MontaliVini");
        Wine vinelleschi = new Wine("Soncino", "Buonissimo con la verdura", "ReggioVini");
        HashMap<Wine, InventoryItem> wines = new HashMap<Wine, InventoryItem>();
        wines.put(vinello, new InventoryItem(1990,5));
