@@ -1,4 +1,5 @@
-# Esercitazioni di Ingegneria del Software
+# Software Engineering Assignments
+
 This repository contains the assigned exercises for the software engineering course @UniPR.
 
 You can find assignments in the "assegnamenti" directory. 
