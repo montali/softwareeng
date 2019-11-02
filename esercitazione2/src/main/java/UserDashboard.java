@@ -30,29 +30,31 @@ public class UserDashboard extends Dashboard{
      * This method prints the main menu
      */
     public void mainMenu(){
-        System.out.println("Welcome to Zamma\n1) Search wine by name\n2) Search wine by year\n3) Print all wines");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int action = 0;
-        try {
-            action = Integer.valueOf(reader.readLine());
-        } catch (IOException exc) {
-            System.out.println("IOEXception thrown. Exiting now.");
-            return;
-        }
-        switch (action) {
-            case 1:
-                this.searchWineByName();
-                break;
-            case 2:
-                this.searchWineByYear();
-                break;
-            case 3:
-            	this.printAllWines();
-            	break;
-            default:
-                this.mainMenu();
-                break;
-        }
+        Integer action = 0;
+        do {
+            System.out.println("Welcome to Zamma\n0) Exit\n1) Search wine by name\n2) Search wine by year\n3) Print all wines\n4) Request wine");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                action = Integer.valueOf(reader.readLine());
+            } catch (IOException exc) {
+                System.out.println("IOEXception thrown. Exiting now.");
+                return;
+            }
+            switch (action) {
+                case 1:
+                    this.searchWineByName();
+                    break;
+                case 2:
+                    this.searchWineByYear();
+                    break;
+                case 3:
+                    this.printAllWines();
+                    break;
+                case 4:
+                    this.requestWine();
+                    break;
+            }
+        } while (!action.equals(0));
     }
 
     /**
@@ -87,7 +89,21 @@ public class UserDashboard extends Dashboard{
             	}
         	}
         }
-
+    /**
+     * This method searches a wine by its name
+     */
+    private void requestWine (){
+        System.out.print("Insert name: ");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String input = "";
+        try {
+            input = reader.readLine();
+        } catch (IOException exc) {
+            System.out.println("IOEXception thrown. Exiting now.");
+            return;
+        }
+        this.shop.requestWine(new User(this.loggedIn), input);
+    }
     /**
      * This method orders a wine
      * 

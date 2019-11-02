@@ -30,32 +30,31 @@ public class AdminDashboard extends Dashboard{
      *
      */
     public void mainMenu(){
-        System.out.println("Welcome back to work.\n1) Ship orders\n2) Add wine\n3) Check requests\n4) Print all data\n");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int action = 0;
-        try {
-            action = Integer.valueOf(reader.readLine());
-        } catch (IOException exc) {
-            System.out.println("IOEXception thrown. Exiting now.");
-            return;
-        }
-        switch (action) {
-            case 1:
-                this.shipWine();
-                break;
-            case 2:
-                this.addWine();
-                break;
-            case 3:
-                this.printRequests();
-                break;
-            case 4:
-            	this.printWinehouse();
-            	break;
-            default:
-                this.mainMenu();
-                break;
-        }
+        Integer action = null;
+        do {
+            System.out.println("Welcome back to work.\n0) Exit\n1) Ship orders\n2) Add wine\n3) Check requests\n4) Print all data\n");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                action = Integer.valueOf(reader.readLine());
+            } catch (IOException exc) {
+                System.out.println("IOEXception thrown. Exiting now.");
+                return;
+            }
+            switch (action) {
+                case 1:
+                    this.shipWine();
+                    break;
+                case 2:
+                    this.addWine();
+                    break;
+                case 3:
+                    this.printRequests();
+                    break;
+                case 4:
+                    this.printWinehouse();
+                    break;
+            }
+        } while (!action.equals(0));
     }
 
     /**
@@ -66,7 +65,6 @@ public class AdminDashboard extends Dashboard{
         System.out.println("Doing my work!");
         new Seller(this.loggedIn).shipOrders(this.shop);
         System.out.println("Finished shipping orders. Go home and have a beer.");
-        this.mainMenu();
     }
 
     /**
@@ -156,7 +154,6 @@ public class AdminDashboard extends Dashboard{
         }
         
     }
-        this.mainMenu();
     }
 
     /**
@@ -222,7 +219,6 @@ public class AdminDashboard extends Dashboard{
             return;
         }
         this.shop.addWine(new Seller(this.loggedIn), new Wine(name, notes, vine), year, quantity);
-        this.mainMenu();
     }
 
     /**
@@ -233,7 +229,6 @@ public class AdminDashboard extends Dashboard{
         for (Request request: this.shop.getRequestedWines()){
             System.out.println("Request:\n" + request.getWineName()+"\nBy: "+request.getRequester().getUsername()+"\n");
         }
-        this.mainMenu();
     }
     
     /**

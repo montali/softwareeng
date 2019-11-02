@@ -10,8 +10,8 @@ public class App
     public static void main( String[] args )
     {
     
-        Seller Simone = new Seller ("Simone" , "1234");
-    	User Filippo = new User ("Filippo" , "456");
+        Seller Simone = new Seller ("simone" , "1234");
+    	User Filippo = new User ("filippo" , "456");
     	Wine Lambrusco = new Wine("Lambrusco" , "Buono per i pasti" , "VignetoParma");
     	Wine Spumante = new Wine("Spumante" , "Eccezionale per i brindisi" , "VignetoParigi");
     	Wine Rosato = new Wine ("Rosato" , "Perfetto per l'aperitivo" , "VignetoReggio");
@@ -24,9 +24,9 @@ public class App
     	Sellers.add(Simone);
     	ArrayList<User> Users = new ArrayList<User>();
     	Users.add(Filippo);
-    	Winehouse CantinaUnipr = new Winehouse("CantinaUnipr", Wines, Sellers, Users);
-     
-        Login.loginPage(CantinaUnipr);
+    	Winehouse cantinaUnipr = new Winehouse("CantinaUnipr", Wines, Sellers, Users);
+     	cantinaUnipr.requestWine(Filippo, "Amarono");
+        Login.loginPage(cantinaUnipr);
      
     }
 }

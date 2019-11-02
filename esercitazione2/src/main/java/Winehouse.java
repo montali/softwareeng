@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Winehouse describes a winehouse and its properties.
@@ -276,11 +273,15 @@ public class Winehouse {
 		else {
 			this.wines.put(toAdd,new InventoryItem(year,quantity));
 		}
-		for (Request temp: this.requestedWines) {
+		// We can't use a foreach loop to remove elements, so let's use an iterator instead
+		Iterator<Request> it = this.requestedWines.iterator();
+		while(it.hasNext()){
+			Request temp = it.next();
 			if (temp.checkIfRequested(toAdd.getName())){
-				this.requestedWines.remove(temp);
+				it.remove();
 			}
 		}
+
 		System.out.println("Vino aggiunto con successo: " + toAdd.getName() + " del " + year);
 	}
 	/**
