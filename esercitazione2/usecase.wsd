@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Seller
+actor User
+actor Person 
+Person <|-- Seller
+Person <|-- User
+rectangle winehouse {
+    Person -- (login)
+    Person -- (sign up)
+    User -- (wine purchase)
+    User -- (wine search for year)
+    User -- (wine search for name)
+    User -- (check orders)
+    User -- (request a wine)
+    User -- (print all wines)
+    Seller -- (print all wines)
+    Seller -- (add a wine)
+    (add a wine) .> (notify requester) : includes
+    Seller -- (remove wine)
+    Seller -- (print all data)
+    Seller -- (ship the orders)
+    (activate notifications) .> (request a wine) : extends
+    (print all data) .> (print all wines) : includes
+}
+@enduml
