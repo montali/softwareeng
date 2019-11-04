@@ -46,6 +46,7 @@ public class Demo
     	//Utente UZ si registra e vuole acquistare vino UY
     	CantinaUnipr.login(Luca.getUsername(), Luca.getPassword());
     	Luca.orderWine(Spumante, CantinaUnipr, 2005, 1);
+    	Luca.requestWine(Spumante.getName(),CantinaUnipr);
     	Simone.shipOrders(CantinaUnipr);
     	
     	//Impiegato aggiunge vino Uy

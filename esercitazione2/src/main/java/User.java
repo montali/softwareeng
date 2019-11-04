@@ -56,7 +56,7 @@ public class User extends Person{
 	/**
 	 * This method returns the user's orders
 	 * 
-	 * @param shop
+	 * @param  shop
 	 * @return the orders
 	 */
 	public ArrayList<Order> getMyOrders (final Winehouse shop) {
@@ -81,5 +81,15 @@ public class User extends Person{
 	 */
 	public HashMap<Wine,InventoryItem> getWinesByYear (Integer year, Winehouse shop) {
 		return shop.findWinesYear(this, year);
+	}
+	
+	/*
+	 * This method adds a wine to the list of request
+	 * 
+	 * @param requestedWine
+	 * @param shop
+	 */
+	public void requestWine (String requestedWine, Winehouse shop) {
+		shop.requestWine(this, requestedWine);
 	}
 }
