@@ -1,56 +1,54 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Hello world!
- *
- */
+
 public class Demo
 {
     public static void main( String[] args )
     {
     
     	//Inizializzazione sistema, un utente, un venditore e tre vini
-    	Seller Simone = new Seller ("Simone" , "1234");
-    	User Filippo = new User ("Filippo" , "456");
-    	User Marco = new User ("Marco", "1234");
-    	User Luca = new User ("Luca", "3456");
-    	Wine Lambrusco = new Wine("Lambrusco" , "Buono per i pasti" , "VignetoParma");
-    	Wine Spumante = new Wine("Spumante" , "Eccezionale per i brindisi" , "VignetoParigi");
-    	Wine Rosato = new Wine ("Rosato" , "Perfetto per l'aperitivo" , "VignetoReggio");
-    	HashMap<Wine,InventoryItem> Wines = new HashMap<Wine, InventoryItem>();
-    	Wines.put(Lambrusco, new InventoryItem(1998,4));
-    	Wines.put(Spumante, new InventoryItem(2005,1));
-    	Wines.put(Rosato,new InventoryItem(2010,2));
-    	ArrayList<Seller> Sellers = new ArrayList<Seller> ();
-    	Sellers.add(Simone);
-    	ArrayList<User> Users = new ArrayList<User>();
-    	Users.add(Filippo);
-    	Users.add(Marco);
-    	Users.add(Luca);
-    	Winehouse CantinaUnipr = new Winehouse("CantinaUnipr", Wines, Sellers, Users);
-    	System.out.println(CantinaUnipr.getWinehouseData(Simone));
+    	Seller simone = new Seller ("Simone" , "1234");
+    	User filippo = new User ("Filippo" , "456");
+    	User marco = new User ("Marco", "1234");
+    	User luca = new User ("Luca", "3456");
+    	Wine lambrusco = new Wine("Lambrusco" , "Buono per i pasti" , "VignetoParma");
+    	Wine spumante = new Wine("Spumante" , "Eccezionale per i brindisi" , "VignetoParigi");
+    	Wine rosato = new Wine ("Rosato" , "Perfetto per l'aperitivo" , "VignetoReggio");
+    	HashMap<Wine,InventoryItem> wines = new HashMap<Wine, InventoryItem>();
+    	wines.put(lambrusco, new InventoryItem(1998,4));
+    	wines.put(spumante, new InventoryItem(2005,1));
+    	wines.put(rosato,new InventoryItem(2010,2));
+    	ArrayList<Seller> sellers = new ArrayList<Seller> ();
+    	sellers.add(simone);
+    	ArrayList<User> users = new ArrayList<User>();
+    	users.add(filippo);
+    	users.add(marco);
+    	users.add(luca);
+    	Winehouse cantinaUnipr = new Winehouse("CantinaUnipr", wines, sellers, users);
+    	System.out.println(cantinaUnipr.getWinehouseData(simone));
     	
     	//Utente UX si registra e acquista alcune bottiglie di un vino UX
-    	CantinaUnipr.login(Filippo.getUsername(), Filippo.getPassword());
-    	Filippo.orderWine(Lambrusco, CantinaUnipr, 1998, 2);
-    	Simone.shipOrders(CantinaUnipr);
-    	System.out.println(CantinaUnipr.getWinehouseData(Simone));
+    	cantinaUnipr.login(filippo.getUsername(), filippo.getPassword());
+    	filippo.orderWine(lambrusco, cantinaUnipr, 1998, 2);
+    	simone.shipOrders(cantinaUnipr);
+    	System.out.println(cantinaUnipr.getWinehouseData(simone));
     	
     	//Utente UY si registra e acquista tutte le bottiglie di un vino UY
-    	CantinaUnipr.login(Marco.getUsername(), Marco.getPassword());
-    	Marco.orderWine(Spumante, CantinaUnipr, 2005, 1);
-    	Simone.shipOrders(CantinaUnipr);
-    	System.out.println(CantinaUnipr.getWinehouseData(Simone));
+    	cantinaUnipr.login(marco.getUsername(), marco.getPassword());
+    	marco.orderWine(spumante, cantinaUnipr, 2005, 1);
+    	simone.shipOrders(cantinaUnipr);
+    	System.out.println(cantinaUnipr.getWinehouseData(simone));
     	
     	//Utente UZ si registra e vuole acquistare vino UY
-    	CantinaUnipr.login(Luca.getUsername(), Luca.getPassword());
-    	Luca.orderWine(Spumante, CantinaUnipr, 2005, 1);
-    	Simone.shipOrders(CantinaUnipr);
+    	cantinaUnipr.login(luca.getUsername(), luca.getPassword());
+    	luca.orderWine(spumante, cantinaUnipr, 2005, 1);
+    	luca.requestWine(spumante.getName(),cantinaUnipr);
+    	simone.shipOrders(cantinaUnipr);
     	
     	//Impiegato aggiunge vino Uy
-    	Simone.addWines(Spumante, 2, 2005, CantinaUnipr);
-    	Simone.shipOrders(CantinaUnipr);
+    	simone.addWines(spumante, 2, 2005, cantinaUnipr);
+    	simone.shipOrders(cantinaUnipr);
     
     }
 }

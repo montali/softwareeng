@@ -284,7 +284,7 @@ public class Winehouse {
 
 		System.out.println("Vino aggiunto con successo: " + toAdd.getName() + " del " + year);
 	}
-	/**
+	/**requestedWine
 	 * This method removes a single wine
 	 * 
 	 * @param authorizer
@@ -322,11 +322,6 @@ public class Winehouse {
 	 * @param toRequest
 	 */
 	public void requestWine(User requester, String toRequest) {
-		for(Map.Entry<Wine,InventoryItem> temp : this.wines.entrySet()) {
-			if(toRequest.equals(temp.getKey().getName())) {
-				return;
-			}
-		}
 		this.requestedWines.add(new Request(requester, toRequest));
 	}
 
