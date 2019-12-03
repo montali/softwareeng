@@ -1,0 +1,18 @@
+@startuml classes
+ CompanyManager "0..n" o-- "0..n" Headquarter
+ CompanyManager o-- Person 
+ Person <|-- Functionary
+ Functionary <|-- Admin 
+ Functionary <|-- Manager 
+
+ Functionary - UserDashboard : uses
+ UserDashboard *-- Client
+ Client - Message : sends
+ Message *-- MessageType
+ Client - Server : "connects to"
+ Server - ServerThread : generates
+ Server - Reply : sends
+ Reply *-- ReplyType
+
+
+@enduml

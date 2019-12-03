@@ -54,3 +54,43 @@ To support the project's ideation process, we created two UML diagrams:
 ![UML classes](./esercitazione2/classes.png)
 
 ![UML usecases](./esercitazione2/usecase.png)
+
+## Esercitazione 3
+
+The third exercise describes an employee manager for a firm. We have multiple levels of employee privileges, where a lower level employee cannot edit a higher one. In the program, multiple clients communicate with a multithreaded server by using a socket. We defined these classes:
+
+* `Person` represents a basic employee who cannot connect to the system. It's the base entity for all of the employees, and has these subclasses:
+  * `Functionary` is an employee with access to the system
+  * `Manager` is a higher level functionary
+  * `Admin` is the highest level of employee
+* `Headquarter` represents one of the company's headquarters.
+* `CompanyManager`  is the class holding all the firm's data: employees and headquarters.
+* `UserDashboard` contains the methods needed to interact with the system
+* `ServerThread`  holds the communication with a single client
+* `Client` connects to the server socket
+
+Servers and clients exchange two types of messages:
+
+* `Message` containing the requests, with types defined in `MessageType` 
+* `Reply` contains the server's replies, with types defined in `ReplyType` 
+
+We defined two types of exceptions:
+
+* `InvalidVATException`, thrown when an invalid VAT is inserted
+* `UnauthorizedUserException`, thrown when a user tries to do something he's not allowed to
+
+To test the software with real data, we created `RandomDataGenerator` with some datasets from the **Comune di Reggio Emilia**. 
+
+### Testing the software
+
+To test the software, start the Server class' main, then start the Demo class' main: this will generate 10 clients working together.
+
+To start a simple demo testing these classes, just use the main method contained in `Demo`.
+
+### UML and use cases
+
+To support the project's ideation process, we created a use case analysis (**found in NewEmployeeUseCase.pdf**), and two UML diagrams:
+
+![UML classes](./esercitazione3/classes.png)
+
+![UML usecases](./esercitazione3/usecases.png)

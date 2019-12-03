@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Admin
+actor Manager
+actor Functionary 
+Manager <|-- Admin
+Functionary <|-- Manager
+rectangle "company manager" {
+    Functionary -- (login)
+    (login) .> (check password) : includes
+    Functionary -- (add employee)
+    Functionary -- (edit employee)
+    Functionary -- (delete employee)
+    (add employee) .> (check permission) : includes
+    (edit employee) .> (check permission) : includes
+    (delete employee) .> (check permission) : includes
+    Functionary -- (get employee)
+    (get employee) <|-- (get employee by job)
+    (get employee) <|-- (get employee by HQ)
+    (get employee) <|-- (get all employees)
+    (get employee) .> (check permission) : includes
+    Manager -- (add headquarter)
+    Manager -- (delete headquarter)
+    Manager -- (edit headquarter)
+    Manager -- (get headquarter)
+
+
+}
+@enduml
