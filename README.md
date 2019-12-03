@@ -79,7 +79,7 @@ We defined two types of exceptions:
 * `InvalidVATException`, thrown when an invalid VAT is inserted
 * `UnauthorizedUserException`, thrown when a user tries to do something he's not allowed to
 
-To test the software with real data, we created `RandomDataGenerator` with some datasets from the **Comune di Reggio Emilia**. 
+To test the software with real data, we created `RandomDataGenerator` with some datasets from the [**Comune di Reggio Emilia**](https://opendata.comune.re.it/en/dataset/cognomi-piu-diffusi-anno-2015/resource/984d1938-6f25-4680-869c-0d9f009cb21e). 
 
 ### Testing the software
 
