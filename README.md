@@ -81,7 +81,7 @@ We defined two types of exceptions:
 
 To test the software with real data, we created `RandomDataGenerator` with some datasets from the **Comune di Reggio Emilia**. 
 
-### Testing the software
+### Testing the software
 
 To test the software, start the Server class' main, then start the Demo class' main: this will generate 10 clients working together.
 
