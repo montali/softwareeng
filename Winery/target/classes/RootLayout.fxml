@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.RootLayout">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@wine.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="usernameLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox fx:id="homeHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="homeCircle" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text fx:id="homeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="winesHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="winesCircle" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text fx:id="winesLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Wines">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="ordersHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="ordersCircle" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text fx:id="ordersLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Orders">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="logoutHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="ordersCircle1" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+                              <Text fx:id="editWine1" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

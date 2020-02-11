@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AdminRootLayout">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="199.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@wine.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="usernameLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox fx:id="homeHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="homeCircle" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text fx:id="homeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="addWineHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="addWineCircle" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text fx:id="homeLabel1" strokeType="OUTSIDE" strokeWidth="0.0" text="Add wine" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="editWineHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="editWineCircle" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text fx:id="editWine" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit wines" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="logoutHBox" alignment="CENTER" prefHeight="4.0" prefWidth="100.0">
+                           <children>
+                              <Circle fx:id="editWineCircle1" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+                              <Text fx:id="editWine1" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
